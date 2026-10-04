@@ -26,6 +26,31 @@ These features are implemented in the source. Video-dependent features require a
 - Viewing history stored locally in localStorage.
 - A discovery strip showing recorded videos near the visible map area. These are not live cameras.
 
+## Interface previews
+
+> [!NOTE]
+> These screenshots show an earlier prototype with a populated catalog and illustrate its interface. **The public source starts with an empty catalog. The locations and videos shown below are not bundled with the project.**
+
+### World map
+
+Satellite imagery with clustered markers for browsing window-view locations across the world.
+
+![Satellite world map with colored marker clusters](docs/images/map-overview.png)
+
+### Location selection
+
+A location popup showing the selected place and actions to view its window or open it on Vimeo.
+
+![Selected location popup with View Window and View on Vimeo buttons](docs/images/location-popup.png)
+
+### Video player and playlist
+
+A large video overlay with playback navigation and a side panel separating visited locations from upcoming selections.
+
+The **Upcoming (Next 10)** playlist is generated automatically by a geographic proximity algorithm. Starting from the current video's location, it selects the nearest unvisited location, then repeats the selection from each newly chosen location to build a route of up to ten videos. Previously visited locations and entries already selected for the upcoming playlist are excluded to avoid repeats.
+
+![Video player with navigation controls and visited and upcoming playlists](docs/images/video-playlist.png)
+
 ## Catalog and privacy
 
 The shareable source ships with an **empty catalog**. It does not include WindowSwap's catalog, contributor personal information or credentials. The app opens a map without video markers until you supply content you own or have permission to redistribute.
