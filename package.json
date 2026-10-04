@@ -1,22 +1,60 @@
 {
-  "name": "windows-swap-unlocked",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.3.0"
-  },
-  "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19"
-  }
+	"name": "windows-swap-unlocked",
+	"version": "0.1.0",
+	"description": "Desktop map viewer for ambient window-view videos",
+	"author": "Antigravity",
+	"private": true,
+	"main": "electron/main.js",
+	"scripts": {
+		"dev": "next dev --turbopack",
+		"build": "next build",
+		"electron:dev": "concurrently \"next dev\" \"wait-on http://localhost:3000 && electron .\"",
+		"electron:build": "npm run build && electron-builder --win",
+		"typecheck": "tsc --noEmit",
+		"check:publication": "node scripts/check-publication.cjs",
+		"prebuild": "npm run check:publication"
+	},
+	"build": {
+		"appId": "com.swapunlocked.app",
+		"productName": "Windows Swap Unlocked",
+		"directories": {
+			"output": "dist"
+		},
+		"win": {
+			"target": "nsis"
+		},
+		"files": [
+			"electron/**/*",
+			"out/**/*",
+			"package.json"
+		],
+		"asar": true
+	},
+	"dependencies": {
+		"@types/leaflet": "^1.9.17",
+		"@types/leaflet.markercluster": "^1.5.5",
+		"@types/supercluster": "^7.1.3",
+		"antd": "^5.24.6",
+		"electron-serve": "^1.1.0",
+		"gl-matrix": "^3.4.3",
+		"leaflet": "^1.9.4",
+		"leaflet.markercluster": "^1.5.3",
+		"next": "15.5.27",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
+	},
+	"devDependencies": {
+		"@types/node": "^20",
+		"@types/react": "^19",
+		"@types/react-dom": "^19",
+		"@types/react-map-gl": "^6.1.7",
+		"concurrently": "^9.2.1",
+		"electron": "^41.2.1",
+		"electron-builder": "^26.8.1",
+		"typescript": "^5",
+		"wait-on": "^9.0.5"
+	},
+	"overrides": {
+		"postcss": "8.5.28"
+	}
 }

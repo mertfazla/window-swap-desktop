@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Private catalogs and downloaded third-party bundles must never be published.
+/app/data/*.js
+/app/data/backup/
+/app/data/*.local.*
+/app/data/temp.json
+/private/
+/.private/
+*.dpapi
+
+# Installers can contain old embedded catalogs, even after source cleanup.
+/dist/

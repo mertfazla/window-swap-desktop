@@ -1,0 +1,201 @@
+.modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.85); /* Darker overlay */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1050; /* Ensure modal is above map controls */
+	backdrop-filter: blur(5px); /* Optional: blur background */
+}
+
+.modal-content {
+	position: relative;
+	background-color: #1a1a1d; /* Dark background */
+	color: #f0f0f0; /* Light text */
+	border-radius: 10px;
+	width: 95vw; /* Almost full width */
+	height: 95vh; /* Almost full height */
+	max-width: 1600px; /* Max width for large screens */
+	max-height: 900px; /* Max height for large screens */
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+	display: flex;
+	flex-direction: column;
+	overflow: hidden; /* Prevent content spill */
+}
+
+.modal-close-button {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	background: rgba(255, 255, 255, 0.1);
+	border: none;
+	color: #ffffff;
+	font-size: 28px;
+	font-weight: bold;
+	line-height: 1;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	cursor: pointer;
+	z-index: 1060;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.modal-close-button:hover {
+	background: rgba(255, 255, 255, 0.2);
+	transform: scale(1.1);
+}
+
+.modal-header {
+	padding: 15px 20px;
+	border-bottom: 1px solid #333; /* Separator line */
+	text-align: center;
+	flex-shrink: 0; /* Prevent header from shrinking */
+	position: relative; /* Keep header content flow */
+	z-index: 1055; /* Below close button, above video */
+}
+
+.modal-header h2 {
+	margin: 0;
+	font-size: 1.2rem;
+	color: #a0c8ff; /* Match popup title color */
+}
+
+.modal-body {
+	padding: 0; /* Remove padding around iframe */
+	flex-grow: 1; /* Allow body to fill remaining space */
+	overflow: hidden; /* Ensure iframe fits */
+	background-color: #000; /* Ensure body has background for player */
+}
+
+.modal-body iframe {
+	display: block; /* Remove extra space below iframe */
+	width: 100%;
+	height: 100%;
+	border: none; /* Ensure no iframe border */
+}
+
+.modal-controls {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: rgba(0, 0, 0, 0.6);
+	border-radius: 25px;
+	padding: 8px 15px;
+	display: flex;
+	gap: 15px;
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out;
+	z-index: 1058; /* Above video, below close button */
+	pointer-events: none; /* Initially not interactive */
+}
+
+.modal-controls.visible {
+	opacity: 1;
+	pointer-events: auto; /* Interactive when visible */
+}
+
+.modal-controls button {
+	background: none;
+	border: none;
+	color: #ffffff;
+	font-size: 24px; /* Adjust as needed for icons */
+	cursor: pointer;
+	padding: 5px;
+	line-height: 1;
+	transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.modal-controls button:hover:not(:disabled) {
+	color: #a0c8ff;
+	transform: scale(1.1);
+}
+
+.modal-controls button:disabled {
+	color: #555;
+	cursor: not-allowed;
+}
+
+.playlist-panel {
+	position: absolute;
+	top: 70px; /* Below header */
+	right: 15px;
+	width: 280px;
+	max-height: calc(95vh - 100px); /* Adjust based on modal height/padding */
+	background-color: rgba(26, 26, 29, 0.95); /* Match modal content */
+	border: 1px solid #333;
+	border-radius: 8px;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+	z-index: 1059; /* Above controls, below close button */
+	padding: 15px;
+	color: #f0f0f0;
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+}
+
+.playlist-panel h4 {
+	margin: 0 0 15px 0;
+	text-align: center;
+	color: #a0c8ff;
+	border-bottom: 1px solid #444;
+	padding-bottom: 10px;
+}
+
+.playlist-panel h5 {
+	margin: 10px 0 5px 0;
+	color: #ccc;
+	font-size: 0.9rem;
+}
+
+.playlist-panel ul {
+	list-style: none;
+	padding: 0;
+	margin: 0 0 15px 0;
+	max-height: 200px; /* Limit height of lists */
+	overflow-y: auto;
+}
+
+.playlist-panel li {
+	padding: 6px 8px;
+	cursor: pointer;
+	border-radius: 4px;
+	transition: background-color 0.2s ease;
+	font-size: 0.95rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.playlist-panel li:hover {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+.playlist-panel li:last-child {
+	margin-bottom: 0;
+}
+
+.playlist-close-button {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	background: none;
+	border: none;
+	color: #aaa;
+	font-size: 20px;
+	cursor: pointer;
+	padding: 0;
+	line-height: 1;
+}
+
+.playlist-close-button:hover {
+	color: #fff;
+}
